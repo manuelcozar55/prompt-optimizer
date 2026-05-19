@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a1a2e,100:16213e&height=200&section=header&text=KERNEL&fontSize=72&fontColor=e2e8f0&animation=fadeIn&fontAlignY=38&desc=Prompt%20Optimizer%20%E2%80%94%20Doctrine%202026&descAlignY=62&descSize=18&descColor=94a3b8" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a1a2e,100:16213e&height=200&section=header&text=Prompt%20Optimizer&fontSize=56&fontColor=e2e8f0&animation=fadeIn&fontAlignY=38&desc=6-Phase%20Pipeline%20%E2%80%94%20Doctrine%202026&descAlignY=62&descSize=18&descColor=94a3b8" width="100%" />
 
 [![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
@@ -13,7 +13,7 @@
 <br/>
 
 > **Stop guessing. Start engineering.**
-> KERNEL transforms vague, underspecified prompts into production-grade, scored, and auditable instructions —
+> Prompt Optimizer transforms vague, underspecified prompts into production-grade, scored, and auditable instructions —
 > using a 6-phase pipeline grounded in prompt engineering doctrine 2026.
 
 <br/>
@@ -29,7 +29,7 @@
 
 Most prompt engineering today is trial-and-error guesswork: iterate, eyeball the output, repeat. This produces inconsistent results, hidden regressions, and zero observability.
 
-**KERNEL changes the paradigm.** Every optimization is:
+**Prompt Optimizer changes the paradigm.** Every optimization is:
 
 - **Scored** against a calibrated 7-dimension binary rubric
 - **Traced** across 6 explicit pipeline phases with token + cost accounting
@@ -56,59 +56,61 @@ Most prompt engineering today is trial-and-error guesswork: iterate, eyeball the
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TD
     IN(["📝 Vague Prompt"])
 
-    subgraph PHASE1["① PARSE & DETECT — Promise.all"]
-        direction TB
+    subgraph PHASE1["① PARSE & DETECT — runs in parallel"]
+        direction LR
         PD["🔍 Domain Classify\nHaiku 4.5 · zero-shot"]
         PA["🚫 Antipattern Scan\n40+ patterns · regex only"]
         PS["📊 Initial 7-D Score\nSonnet 4.6"]
     end
 
-    P2["② CONTEXT BUDGET\n─────────────────\nSelect domain overlay\nCompact history › 30 turns"]
-    P3["③ ENRICH\n─────────────────\nBuild XML sandwich\nGenerate acceptance criteria\nHedging → imperatives"]
-    P4["④ DOMAIN OVERLAY\n─────────────────\nApply XML overlay\nPause if confidence < 0.7"]
+    P2["② CONTEXT BUDGET\nSelect domain overlay · Compact history › 30 turns"]
 
-    subgraph PHASE5["⑤ SELF-CRITIQUE — ×3 max"]
-        direction TB
-        PC["🔴 Critic · Opus 4.7\nIdentifies 5 structural flaws"]
-        PR["🔵 Rewriter · Sonnet 4.6\nProduces improved draft"]
-        PC -->|"non-progress → break"| PR
-        PR -->|"score < 85 → next iter"| PC
+    P3["③ ENRICH\nXML sandwich · Acceptance criteria · Hedging → imperatives"]
+
+    P4["④ DOMAIN OVERLAY\nApply XML overlay · Pause if confidence < 0.7"]
+
+    subgraph PHASE5["⑤ SELF-CRITIQUE — up to 3 iterations"]
+        direction LR
+        PC["🔴 Critic — Opus 4.7\nFinds 5 structural flaws"]
+        PR["🔵 Rewriter — Sonnet 4.6\nProduces improved draft"]
+        PC -->|"flaw list"| PR
+        PR -->|"score < 85\nor non-progress → stop"| PC
     end
 
     subgraph PHASE6["⑥ TOURNAMENT — optional · budget-guarded"]
-        direction TB
+        direction LR
         T1["🟣 Opus 4.7"]
         T2["🔵 Sonnet 4.6"]
         T3["🟢 GPT-5.4"]
-        TJ["⚖️ Judge · Opus 4.7 · temp=0\nPicks winner by 7-D score"]
+        TJ["⚖️ Judge — Opus 4.7 · temp=0\nPicks winner by 7-D score"]
         T1 & T2 & T3 -->|"parallel"| TJ
     end
 
-    OUT(["✅ Optimized Prompt\nScore diff · Full SSE trace · SQLite"])
+    OUT(["✅ Optimized Prompt\nScore diff · Full SSE trace · SQLite persisted"])
 
     IN --> PHASE1 --> P2 --> P3 --> P4 --> PHASE5 --> PHASE6 --> OUT
 
-    style IN    fill:#0f172a,stroke:#60a5fa,color:#e2e8f0
-    style OUT   fill:#052e16,stroke:#4ade80,color:#e2e8f0
+    style IN     fill:#0f172a,stroke:#60a5fa,color:#e2e8f0
+    style OUT    fill:#052e16,stroke:#4ade80,color:#e2e8f0
 
-    style P2    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P3    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P4    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+    style P2     fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+    style P3     fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+    style P4     fill:#1e293b,stroke:#60a5fa,color:#94a3b8
 
-    style PD    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
-    style PA    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
-    style PS    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+    style PD     fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+    style PA     fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+    style PS     fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
 
-    style PC    fill:#0f172a,stroke:#ef4444,color:#fca5a5
-    style PR    fill:#0f172a,stroke:#3b82f6,color:#93c5fd
+    style PC     fill:#0f172a,stroke:#ef4444,color:#fca5a5
+    style PR     fill:#0f172a,stroke:#3b82f6,color:#93c5fd
 
-    style T1    fill:#0f172a,stroke:#a855f7,color:#d8b4fe
-    style T2    fill:#0f172a,stroke:#3b82f6,color:#93c5fd
-    style T3    fill:#0f172a,stroke:#22c55e,color:#86efac
-    style TJ    fill:#0f172a,stroke:#f59e0b,color:#fcd34d
+    style T1     fill:#0f172a,stroke:#a855f7,color:#d8b4fe
+    style T2     fill:#0f172a,stroke:#3b82f6,color:#93c5fd
+    style T3     fill:#0f172a,stroke:#22c55e,color:#86efac
+    style TJ     fill:#0f172a,stroke:#f59e0b,color:#fcd34d
 
     style PHASE1 fill:#0d1b2a,stroke:#38bdf8,color:#7dd3fc
     style PHASE5 fill:#0d1b2a,stroke:#7c3aed,color:#c4b5fd
@@ -321,7 +323,7 @@ Enforced in `CLAUDE.md` and verified in CI:
 ## Author
 
 **Manuel Cózar**
-*AI Engineer & Innovation Researcher @ Fundación CIRCE*
+*AI Engineer & Innovation Researcher*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-@manuelcozarb-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/manuelcozarb)
 [![GitHub](https://img.shields.io/badge/GitHub-@manuelcozar55-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/manuelcozar55)
