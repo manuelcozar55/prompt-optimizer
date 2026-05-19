@@ -56,31 +56,63 @@ Most prompt engineering today is trial-and-error guesswork: iterate, eyeball the
 ## Architecture
 
 ```mermaid
-flowchart TD
-    IN(["📝 Vague Prompt"]) --> P1
+flowchart LR
+    IN(["📝 Vague Prompt"])
 
-    subgraph PIPELINE["⚙️ 6-Phase Pipeline — SSE streamed"]
-        P1["Phase 1 · Parse & Detect\nHaiku: domain classify\n+ antipattern scan\n+ initial 7-D score"]
-        P2["Phase 2 · Context Budget\nSelect domain overlay\nCompact history > 30 turns"]
-        P3["Phase 3 · Enrich\nSandwich structure\nGenerate acceptance criteria\nReplace hedging with imperatives"]
-        P4["Phase 4 · Domain Overlay\nApply XML overlay\nPause if confidence < 0.7"]
-        P5["Phase 5 · Self-Critique\nOpus 4.7 → 5 flaws\nSonnet 4.6 → rewrite\n× 3 max · non-progress break"]
-        P6["Phase 6 · Tournament\nOpus + Sonnet + GPT in parallel\nOpus judge temp=0 picks winner"]
-
-        P1 --> P2 --> P3 --> P4 --> P5 --> P6
+    subgraph PHASE1["① PARSE & DETECT — Promise.all"]
+        direction TB
+        PD["🔍 Domain Classify\nHaiku 4.5 · zero-shot"]
+        PA["🚫 Antipattern Scan\n40+ patterns · regex only"]
+        PS["📊 Initial 7-D Score\nSonnet 4.6"]
     end
 
-    P6 --> OUT(["✅ Optimized Prompt\nScore diff · Full trace · SQLite persisted"])
+    P2["② CONTEXT BUDGET\n─────────────────\nSelect domain overlay\nCompact history › 30 turns"]
+    P3["③ ENRICH\n─────────────────\nBuild XML sandwich\nGenerate acceptance criteria\nHedging → imperatives"]
+    P4["④ DOMAIN OVERLAY\n─────────────────\nApply XML overlay\nPause if confidence < 0.7"]
 
-    style IN fill:#1e293b,stroke:#60a5fa,color:#e2e8f0
-    style OUT fill:#14532d,stroke:#4ade80,color:#e2e8f0
-    style P1 fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P2 fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P3 fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P4 fill:#1e293b,stroke:#60a5fa,color:#94a3b8
-    style P5 fill:#1e293b,stroke:#7c3aed,color:#94a3b8
-    style P6 fill:#1e293b,stroke:#f59e0b,color:#94a3b8
-    style PIPELINE fill:#0f172a,stroke:#334155,color:#60a5fa
+    subgraph PHASE5["⑤ SELF-CRITIQUE — ×3 max"]
+        direction TB
+        PC["🔴 Critic · Opus 4.7\nIdentifies 5 structural flaws"]
+        PR["🔵 Rewriter · Sonnet 4.6\nProduces improved draft"]
+        PC -->|"non-progress → break"| PR
+        PR -->|"score < 85 → next iter"| PC
+    end
+
+    subgraph PHASE6["⑥ TOURNAMENT — optional · budget-guarded"]
+        direction TB
+        T1["🟣 Opus 4.7"]
+        T2["🔵 Sonnet 4.6"]
+        T3["🟢 GPT-5.4"]
+        TJ["⚖️ Judge · Opus 4.7 · temp=0\nPicks winner by 7-D score"]
+        T1 & T2 & T3 -->|"parallel"| TJ
+    end
+
+    OUT(["✅ Optimized Prompt\nScore diff · Full SSE trace · SQLite"])
+
+    IN --> PHASE1 --> P2 --> P3 --> P4 --> PHASE5 --> PHASE6 --> OUT
+
+    style IN    fill:#0f172a,stroke:#60a5fa,color:#e2e8f0
+    style OUT   fill:#052e16,stroke:#4ade80,color:#e2e8f0
+
+    style P2    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+    style P3    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+    style P4    fill:#1e293b,stroke:#60a5fa,color:#94a3b8
+
+    style PD    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+    style PA    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+    style PS    fill:#0f172a,stroke:#38bdf8,color:#7dd3fc
+
+    style PC    fill:#0f172a,stroke:#ef4444,color:#fca5a5
+    style PR    fill:#0f172a,stroke:#3b82f6,color:#93c5fd
+
+    style T1    fill:#0f172a,stroke:#a855f7,color:#d8b4fe
+    style T2    fill:#0f172a,stroke:#3b82f6,color:#93c5fd
+    style T3    fill:#0f172a,stroke:#22c55e,color:#86efac
+    style TJ    fill:#0f172a,stroke:#f59e0b,color:#fcd34d
+
+    style PHASE1 fill:#0d1b2a,stroke:#38bdf8,color:#7dd3fc
+    style PHASE5 fill:#0d1b2a,stroke:#7c3aed,color:#c4b5fd
+    style PHASE6 fill:#0d1b2a,stroke:#d97706,color:#fcd34d
 ```
 
 ### Model Routing
@@ -288,12 +320,12 @@ Enforced in `CLAUDE.md` and verified in CI:
 
 ## Author
 
-**Manuel Antonio Cózar Baranguán**
+**Manuel Cózar**
 *AI Engineer & Innovation Researcher @ Fundación CIRCE*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-@manuelcozarb-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/manuelcozarb)
 [![GitHub](https://img.shields.io/badge/GitHub-@manuelcozar55-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/manuelcozar55)
-[![Email](https://img.shields.io/badge/Email-manuelcozarb@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:manuelcozarb@gmail.com)
+[![Email](https://img.shields.io/badge/Email-manuelcozar55@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:manuelcozar55@gmail.com)
 
 ---
 
