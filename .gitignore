@@ -42,3 +42,13 @@ yarn-error.log*
 next-env.d.ts
 data/
 *.db
+
+# Windows metadata
+*.Zone.Identifier
+Thumbs.db
+
+# Unrelated docs
+ycombinator*.md
+PROMPT_ENGINEERING_2026.md
+AGENTS.md
+pnpm-workspace.yaml
