@@ -1,0 +1,23 @@
+{
+  "id": "research-legal-04",
+  "domain": "research",
+  "input_vague": "what GDPR requirements apply to LLM logging",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<scope>",
+    "citation_format",
+    "out_of_scope"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "clearly"
+  ],
+  "output_optimal": "Scope: GDPR Art 5, 6, 17 as applied to prompt/response logs. Out of scope: HIPAA, CCPA. Each requirement cited to article + regulatory guidance.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

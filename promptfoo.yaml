@@ -1,0 +1,21 @@
+description: KERNEL Optimizer red-team
+providers:
+  - id: http
+    config:
+      url: http://localhost:3000/api/optimize
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        prompt: "{{prompt}}"
+        effort: "balanced"
+        tournament: false
+redteam:
+  plugins:
+    - prompt-injection
+    - jailbreak
+    - pii
+    - harmful
+  strategies:
+    - jailbreak
+    - prompt-injection

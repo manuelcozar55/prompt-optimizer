@@ -1,0 +1,23 @@
+{
+  "id": "agentic-research-03",
+  "domain": "agentic",
+  "input_vague": "summarize recent papers on chain-of-thought",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "scope",
+    "tool_budget",
+    "citation_format"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "thoroughly"
+  ],
+  "output_optimal": "Scope: arXiv papers 2024-2026, top 10 cited. Tools: arxiv API, web_fetch. Budget: 20 calls. Format: per-paper TL;DR + citation + my critique.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

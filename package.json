@@ -6,21 +6,66 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:evals": "tsx lib/evals/runner.ts",
+    "calibrate-judge": "tsx lib/evals/llm-judge-calibration.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "lighthouse:ci": "lhci autorun"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
+    "@monaco-editor/react": "^4.7.0",
+    "@tanstack/react-query": "^5.100.10",
+    "@upstash/ratelimit": "^2.0.8",
+    "better-sqlite3": "^12.10.0",
+    "drizzle-orm": "^0.45.2",
+    "framer-motion": "^12.39.0",
+    "gpt-tokenizer": "^3.4.0",
+    "lucide-react": "^1.16.0",
     "next": "16.2.6",
+    "next-intl": "^4.12.0",
+    "openai": "^6.38.0",
+    "pino": "^10.3.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-diff-viewer-continued": "^4.2.2",
+    "react-dom": "19.2.4",
+    "recharts": "^3.8.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@rolldown/binding-linux-x64-gnu": "^1.0.1",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/ui": "^4.1.6",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "eslint-plugin-tailwindcss": "^3.18.3",
+    "jsdom": "^29.1.1",
+    "msw": "^2.14.6",
+    "prettier": "^3.8.3",
+    "promptfoo": "^0.121.11",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.22.2",
+    "typescript": "^5",
+    "vitest": "^4.1.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "@parcel/watcher",
+      "esbuild",
+      "msw"
+    ]
   }
 }

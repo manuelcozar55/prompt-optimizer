@@ -1,0 +1,24 @@
+{
+  "id": "agentic-deploy-02",
+  "domain": "agentic",
+  "input_vague": "deploy a service across staging and prod",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<task_complexity>",
+    "tool_discipline",
+    "rollback_plan"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "smoothly",
+    "automatically"
+  ],
+  "output_optimal": "Medium complexity. Tools: kubectl, Helm, Datadog. Stop conditions: smoke tests fail, error rate > 1%. Rollback: helm rollback if any. Budget: 15 tool calls.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

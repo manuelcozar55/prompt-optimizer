@@ -1,0 +1,17 @@
+{
+  "id": "analytical-decision-01",
+  "domain": "analytical",
+  "input_vague": "ayúdame a decidir si migrar nuestro backend de python a go o rust",
+  "expected_score_min": 85,
+  "expected_traits": [
+    "<problem_framing>", "assumption_list", "criteria_with_weights",
+    "sensitivity_analysis", "red_team", "decision_recommendation",
+    "next_concrete_action"
+  ],
+  "forbidden_terms": [
+    "delve", "robust", "leverage", "comprehensive", "it depends",
+    "many factors", "could be", "might be", "as needed"
+  ],
+  "output_optimal": "<role>Senior engineering analyst preparing a memo for a CTO with 1 day before board meeting.</role>\n\n<problem_framing>\nDecision: Migrate backend from Python to Go, Rust, or stay (with optimization)?\nDecider: CTO. Commits Friday.\nSuccess: choice that, in 18 months, team agrees was right (post-mortem + concrete latency/cost/incident metric).\nOption space:\nA. Stay on Python, optimize hot paths with Rust/Cython.\nB. Migrate to Go (~9 months, gradual).\nC. Migrate to Rust (~14 months, gradual).\nD. Hybrid: Go for I/O, Rust for compute.\n</problem_framing>\n\n<assumptions>\n1. Python p99 latency is binding constraint, not throughput — medium confidence. Verify: APM data 90d.\n2. Can hire 1-2 Go engineers in 3 months — high. Verify: 2 recruiter calls.\n3. Rust learning curve costs 3-6 months/engineer — medium. Verify: ask 3 companies.\n4. Python perf plateau at ~2× current — low. Verify: spike with Cython.\n5. Cost of rewrite < cost of running Python at 5× scale — low. This is the question.\n</assumptions>\n\n<criteria>\n1. p99 latency reduction (25%).\n2. Team velocity 18mo (20%).\n3. Hiring market (15%).\n4. Operational complexity (15%).\n5. Total cost 18mo (15%).\n6. Risk of stalled migration (10%).\n</criteria>\n\n<method>\n1. Score each option against each criterion (banded: strong/acceptable/weak) with rationale.\n2. Multiply by weights, sum, rank.\n3. Sensitivity: for each criterion, if weight doubled, does ranking change?\n4. Red team: strongest argument AGAINST top-ranked. Address it.\n5. Recommend one option + fallback.\n</method>\n\n<output_format>\nRecommendation (1 sentence). Top 2 alternatives with trade-offs. Decision matrix table. Sensitivity table. Strongest counterargument. Key uncertainties. Next step this week.\n</output_format>\n\n<forbidden>\n- \"It depends\" without specifying on what.\n- False precision.\n- Recommendations beyond named option space.\n- Recommendations not reducing to Monday action.\n</forbidden>",
+  "why_excellent": "Decision-framing concreto. Option space incluye 'do nothing'. Assumptions con verification method. Criterios ponderados. Sensitivity + red team obligatorios. Force recommendation + next action."
+}

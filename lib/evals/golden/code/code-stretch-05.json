@@ -1,0 +1,20 @@
+{
+  "id": "code-stretch-05",
+  "domain": "code",
+  "input_vague": "vague single-line bug report",
+  "expected_score_min": 40,
+  "is_stretch": true,
+  "expected_traits": [
+    "acknowledges_ambiguity"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage"
+  ],
+  "output_optimal": "Stretch: insufficient context. Output asks for repro steps, environment, error logs before proceeding.",
+  "why_excellent": "Stretch case: input under-specified. Optimal output refuses to proceed without clarification."
+}

@@ -1,0 +1,25 @@
+{
+  "id": "writing-email-02",
+  "domain": "writing",
+  "input_vague": "write cold outreach email to enterprise CTO",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<audience>",
+    "<voice>",
+    "specific_hook",
+    "single_cta"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "synergy",
+    "value-add"
+  ],
+  "output_optimal": "Audience: CTO at 500-2000 person SaaS. Hook: reference their public talk. CTA: 20-min call this week. No hype. < 120 words.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

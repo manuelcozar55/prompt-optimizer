@@ -1,0 +1,20 @@
+{
+  "id": "creative-stretch-05",
+  "domain": "creative",
+  "input_vague": "be creative",
+  "expected_score_min": 40,
+  "is_stretch": true,
+  "expected_traits": [
+    "asks_for_brief"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage"
+  ],
+  "output_optimal": "Stretch: no brief. Ask for output type, audience, tone, constraints.",
+  "why_excellent": "Stretch case: input under-specified. Optimal output refuses to proceed without clarification."
+}

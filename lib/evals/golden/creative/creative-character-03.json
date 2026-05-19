@@ -1,0 +1,23 @@
+{
+  "id": "creative-character-03",
+  "domain": "creative",
+  "input_vague": "design protagonist for cyberpunk novella",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "constraint_stacking",
+    "voice_anchor",
+    "reject_clichés"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "edgy"
+  ],
+  "output_optimal": "Constraints: 30+, blue-collar background, ambivalent about tech. Voice anchor: Gibson early 80s. Forbidden: hacker tropes, neon, samurai swords.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

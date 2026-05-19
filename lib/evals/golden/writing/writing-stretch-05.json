@@ -1,0 +1,21 @@
+{
+  "id": "writing-stretch-05",
+  "domain": "writing",
+  "input_vague": "write something",
+  "expected_score_min": 40,
+  "is_stretch": true,
+  "expected_traits": [
+    "asks_for_audience",
+    "asks_for_format"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage"
+  ],
+  "output_optimal": "Stretch: too vague. Ask for audience, format, length, tone before proceeding.",
+  "why_excellent": "Stretch case: input under-specified. Optimal output refuses to proceed without clarification."
+}

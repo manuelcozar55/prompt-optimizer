@@ -1,0 +1,25 @@
+{
+  "id": "code-bug-03",
+  "domain": "code",
+  "input_vague": "debug a memory leak in long-running Node process",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<context>",
+    "reproduction_steps",
+    "diagnostic_method",
+    "fix_validation"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "thoroughly",
+    "carefully"
+  ],
+  "output_optimal": "Stack: Node 20, Express, 7-day uptime, heap grows 50MB/hour. Steps: heap snapshot diff, identify retained refs, fix listener leak. Validate: 24h soak test stable < 200MB.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

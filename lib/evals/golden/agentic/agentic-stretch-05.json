@@ -1,0 +1,20 @@
+{
+  "id": "agentic-stretch-05",
+  "domain": "agentic",
+  "input_vague": "do everything I need",
+  "expected_score_min": 40,
+  "is_stretch": true,
+  "expected_traits": [
+    "refuses_unbounded_scope"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage"
+  ],
+  "output_optimal": "Stretch: scope unbounded. Refuse and ask for specific task + budget + success criteria.",
+  "why_excellent": "Stretch case: input under-specified. Optimal output refuses to proceed without clarification."
+}

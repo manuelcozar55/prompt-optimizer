@@ -1,0 +1,23 @@
+{
+  "id": "agentic-incident-04",
+  "domain": "agentic",
+  "input_vague": "triage a P1 incident",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<task_complexity>",
+    "stopping_conditions",
+    "escalation_path"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "quickly"
+  ],
+  "output_optimal": "Complex. Parallel: logs (Datadog), metrics (Grafana), recent deploys (GitHub). Stop: root cause found OR 15 min elapsed → escalate to on-call lead.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

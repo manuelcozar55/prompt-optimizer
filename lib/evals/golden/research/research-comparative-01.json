@@ -1,0 +1,16 @@
+{
+  "id": "research-comparative-01",
+  "domain": "research",
+  "input_vague": "compara dspy vs langchain para nuestro caso",
+  "expected_score_min": 85,
+  "expected_traits": [
+    "<scope>", "hypothesis", "disconfirming_search", "need_to_believe",
+    "citation_with_confidence", "recency_filter"
+  ],
+  "forbidden_terms": [
+    "delve", "comprehensive", "robust", "many experts believe",
+    "it depends", "could be", "might be", "industry standard"
+  ],
+  "output_optimal": "<role>Senior research analyst writing for a CTO making a build/buy decision in 2 weeks.</role>\n\n<scope>\nQuestion: Should we adopt DSPy or LangChain (or neither) for our prompt-optimization pipeline?\nOur context: Next.js 15 + TypeScript, ~5K optimizations/month (expect 50K in 6 months), 4 engineers (1 ML), ≤ $500/month budget, p95 < 20s.\nRecency filter: prefer sources < 12 months. Flag older.\nOut of scope: code generation, RAG, vector DBs.\n</scope>\n\n<method>\n1. Hypothesis upfront (low confidence, revisable).\n2. Confirming search: official docs, papers, production case studies.\n3. Disconfirming search (mandatory): who migrated AWAY? Why?\n4. Need-to-believe: for each option, what would have to be true?\n5. Synthesize: agreements, conflicts, uncertainties.\n</method>\n\n<citation_format>\nEvery claim: [claim]. [Source: author, date, URL]. [Confidence: high|medium|low + reason].\nNo URL = no citation. No \"according to experts\" without naming them.\n</citation_format>\n\n<output_format>\n1. Executive summary (3 sentences + recommendation).\n2. Hypothesis evolution.\n3. Comparative table.\n4. Need-to-believe table.\n5. Disagreements in literature.\n6. Recommendation with 2 counterarguments addressed.\n7. Next concrete step (Monday action).\n8. Bibliography.\n</output_format>\n\n<forbidden>\n- Citing without URL.\n- \"Many experts believe\".\n- Both-options-are-valid fence-sitting.\n</forbidden>",
+  "why_excellent": "Scope acotado a decisión real. Hipótesis declarada upfront. Disconfirming search obligatorio. Need-to-believe explícito. Citation con confidence levels. Output force recommendation."
+}

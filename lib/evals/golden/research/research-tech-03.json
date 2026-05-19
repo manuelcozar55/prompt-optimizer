@@ -1,0 +1,23 @@
+{
+  "id": "research-tech-03",
+  "domain": "research",
+  "input_vague": "compare WebAssembly runtimes for serverless",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<scope>",
+    "criteria",
+    "disconfirming_search"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "best"
+  ],
+  "output_optimal": "Scope: WasmEdge, Wasmtime, Spin. Criteria: cold start, memory, ecosystem, license. Disconfirming: who migrated AWAY from each?",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

@@ -1,0 +1,25 @@
+{
+  "id": "code-api-02",
+  "domain": "code",
+  "input_vague": "design a REST API for user auth",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<tech_stack>",
+    "<acceptance_criteria>",
+    "test_coverage",
+    "auth_strategy"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "seamless",
+    "scalable"
+  ],
+  "output_optimal": "Define stack (Node 20 + Fastify + Postgres + Argon2). Acceptance: JWT + refresh; rate-limit 10 req/s; 100% test coverage on auth flows. Output OpenAPI 3.1 spec + handlers + tests.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

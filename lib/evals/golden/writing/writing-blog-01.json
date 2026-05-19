@@ -1,0 +1,16 @@
+{
+  "id": "writing-blog-01",
+  "domain": "writing",
+  "input_vague": "escríbeme un blog post sobre por qué nuestra startup adoptó rust",
+  "expected_score_min": 85,
+  "expected_traits": [
+    "<audience>", "<voice>", "concrete_situation", "specific_metrics",
+    "structural_arc", "self_check"
+  ],
+  "forbidden_terms": [
+    "delve", "embark", "journey", "tapestry", "in today's fast-paced",
+    "unlock", "revolutionize", "vibrant", "in the realm of", "fascinating"
+  ],
+  "output_optimal": "<role>Technical writer for HN front page audiences. Knows what reads as authentic vs marketing.</role>\n\n<context>\nMigration: Go → Rust on settlement service, completed Q1 2026, 6-month project.\nMetrics: p99 340ms → 22ms; memory 4.2GB → 280MB; panics 14/year → 1/year.\nWhat went wrong: 3 weeks lost to lifetime-fighting; one senior engineer left over the curve.\n</context>\n\n<audience>\nSenior engineers/tech leads at 20-200 person companies, evaluating Rust skeptically. They've read \"Rust at $BIG_CO\" posts and want the unglamorous truth.\n</audience>\n\n<voice>\nFirst person plural. Technical, no hype. Vary sentences 8-25 words. Concrete situations not abstractions.\n</voice>\n\n<structure>\n1. Moment we knew Go wasn't going to work.\n2. What we tried first.\n3. Rust decision: who pushed, who resisted.\n4. Migration: 3 things better than expected, 2 worse.\n5. The numbers.\n6. What we'd do differently.\n7. Position, not summary.\n</structure>\n\n<length>1400-1700 words.</length>\n\n<forbidden_vocabulary>\ndelve, embark, journey, tapestry, vibrant, holistic, leverage, navigate, unlock, revolutionize.\n</forbidden_vocabulary>\n\n<self_check>\nRead first paragraph aloud. Find sentences with two abstract nouns side by side. Verify every metric is in context.\n</self_check>",
+  "why_excellent": "Pasa el rational stranger test. Tech context con números verificables. Voice anchor concreto. Estructura arco-emocional. Forbidden list completa. Self-check falsificable."
+}

@@ -1,0 +1,422 @@
+[
+  {
+    "id": "agentic-deploy-02",
+    "domain": "agentic",
+    "prompt": "Medium complexity. Tools: kubectl, Helm, Datadog. Stop conditions: smoke tests fail, error rate > 1%. Rollback: helm rollback if any. Budget: 15 tool calls.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "agentic-incident-04",
+    "domain": "agentic",
+    "prompt": "Complex. Parallel: logs (Datadog), metrics (Grafana), recent deploys (GitHub). Stop: root cause found OR 15 min elapsed → escalate to on-call lead.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "agentic-multistep-01",
+    "domain": "agentic",
+    "prompt": "<role>Lead research agent coordinating subagents for competitor analysis.</role>\n\n<context>\nCompetitors of interest: 4-7 named direct competitors.\nBudget cap: 50 tool calls total across all subagents.\n</context>\n\n<task_complexity_assessment>\nClassify as complex (>10 tool calls, multiple parallel research threads).\nEffort: 1 lead, 4-7 subagents (one per competitor), 5-8 tool calls per subagent.\n</task_complexity_assessment>\n\n<instructions>\n1. PLAN. List competitors. For each, write research mandate: exact objective, output format, allowed tools (web_search, web_fetch, max 8 calls), hard boundaries.\n2. DISPATCH. Spawn one subagent per competitor, parallel.\n3. SUBAGENT TEMPLATE: objective, tools, budget (8 max), output JSON schema, forbidden actions.\n4. COLLECT. Validate against Zod schema. Reject and re-spawn (1 retry max) if invalid.\n5. SYNTHESIZE. Build comparison matrix. Surface 3 pricing patterns, 3 positioning differences, 1 recency signal.\n6. SELF-VERIFY before reporting done.\n</instructions>\n\n<stopping_conditions>\n- Done when all named competitors have complete fact set OR tool budget exhausted.\n- Stuck > 2 consecutive failures: mark null + reason.\n- Hard cap: 50 tool calls. At 45, finalize.\n</stopping_conditions>\n\n<output_format>\nJSON with competitors[], patterns{pricing, positioning, recency_signals}, completeness, tool_calls_used, limitations.\n</output_format>\n\n<forbidden>\n- Free-text recommendations (\"we should...\").\n- Synthesizing facts you didn't retrieve.\n- Hedging without specifying source of uncertainty.\n</forbidden>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "agentic-research-03",
+    "domain": "agentic",
+    "prompt": "Scope: arXiv papers 2024-2026, top 10 cited. Tools: arxiv API, web_fetch. Budget: 20 calls. Format: per-paper TL;DR + citation + my critique.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "agentic-stretch-05",
+    "domain": "agentic",
+    "prompt": "Stretch: scope unbounded. Refuse and ask for specific task + budget + success criteria.",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  },
+  {
+    "id": "analytical-buildbuy-02",
+    "domain": "analytical",
+    "prompt": "Decision: build, buy (Langfuse/Helicone), or hybrid. Decider: VP Eng. Criteria: 5 weighted. Assumptions: team capacity, vendor lock, compliance. Red team strongest case against.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "analytical-decision-01",
+    "domain": "analytical",
+    "prompt": "<role>Senior engineering analyst preparing a memo for a CTO with 1 day before board meeting.</role>\n\n<problem_framing>\nDecision: Migrate backend from Python to Go, Rust, or stay (with optimization)?\nDecider: CTO. Commits Friday.\nSuccess: choice that, in 18 months, team agrees was right (post-mortem + concrete latency/cost/incident metric).\nOption space:\nA. Stay on Python, optimize hot paths with Rust/Cython.\nB. Migrate to Go (~9 months, gradual).\nC. Migrate to Rust (~14 months, gradual).\nD. Hybrid: Go for I/O, Rust for compute.\n</problem_framing>\n\n<assumptions>\n1. Python p99 latency is binding constraint, not throughput — medium confidence. Verify: APM data 90d.\n2. Can hire 1-2 Go engineers in 3 months — high. Verify: 2 recruiter calls.\n3. Rust learning curve costs 3-6 months/engineer — medium. Verify: ask 3 companies.\n4. Python perf plateau at ~2× current — low. Verify: spike with Cython.\n5. Cost of rewrite < cost of running Python at 5× scale — low. This is the question.\n</assumptions>\n\n<criteria>\n1. p99 latency reduction (25%).\n2. Team velocity 18mo (20%).\n3. Hiring market (15%).\n4. Operational complexity (15%).\n5. Total cost 18mo (15%).\n6. Risk of stalled migration (10%).\n</criteria>\n\n<method>\n1. Score each option against each criterion (banded: strong/acceptable/weak) with rationale.\n2. Multiply by weights, sum, rank.\n3. Sensitivity: for each criterion, if weight doubled, does ranking change?\n4. Red team: strongest argument AGAINST top-ranked. Address it.\n5. Recommend one option + fallback.\n</method>\n\n<output_format>\nRecommendation (1 sentence). Top 2 alternatives with trade-offs. Decision matrix table. Sensitivity table. Strongest counterargument. Key uncertainties. Next step this week.\n</output_format>\n\n<forbidden>\n- \"It depends\" without specifying on what.\n- False precision.\n- Recommendations beyond named option space.\n- Recommendations not reducing to Monday action.\n</forbidden>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "analytical-hire-03",
+    "domain": "analytical",
+    "prompt": "Options: senior eng, PM, contractor, defer 3 months. Criteria: 18mo velocity, runway impact, founder time. Sensitivity: which assumption flips it?",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "analytical-pricing-04",
+    "domain": "analytical",
+    "prompt": "Assumptions: churn elasticity, competitor response. Verify: 20-customer survey, competitor scrape. Sensitivity: at what churn does it stop being net positive? Next step: survey.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "analytical-stretch-05",
+    "domain": "analytical",
+    "prompt": "Stretch: no decision. Ask: what decision is this for? Who is the decider? Deadline?",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  },
+  {
+    "id": "code-api-02",
+    "domain": "code",
+    "prompt": "Define stack (Node 20 + Fastify + Postgres + Argon2). Acceptance: JWT + refresh; rate-limit 10 req/s; 100% test coverage on auth flows. Output OpenAPI 3.1 spec + handlers + tests.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "code-bug-03",
+    "domain": "code",
+    "prompt": "Stack: Node 20, Express, 7-day uptime, heap grows 50MB/hour. Steps: heap snapshot diff, identify retained refs, fix listener leak. Validate: 24h soak test stable < 200MB.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "code-migration-04",
+    "domain": "code",
+    "prompt": "Phases: 1) feature parity audit, 2) route-by-route migration, 3) parity tests, 4) canary 5% traffic, 5) full cutover. Rollback plan: feature flag at edge.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "code-refactor-01",
+    "domain": "code",
+    "prompt": "<role>Senior Python engineer specializing in data pipeline performance.</role>\n\n<context>\nProject: Python 3.11 ETL script processing CSV → Postgres.\nCurrent state: 50K rows / 8 minutes (104 rows/sec). Target: < 30 seconds.\nStack: pandas 2.x, psycopg3, no async currently.\nProfiling: cProfile output attached as `profile.txt`. Top hotspot: nested loop in `enrich_records()` doing per-row API lookup (lines 87-112).\n</context>\n\n<instructions>\nPropose and implement an optimization plan. Plan-before-code: list 3 candidate strategies. TDD-first: write failing tests then implement.\n</instructions>\n\n<acceptance_criteria>\n- All existing pytest tests still pass.\n- 50K-row benchmark < 30 seconds on M2 / 16GB.\n- No new heavy dependencies.\n- Diff < 200 lines net change.\n</acceptance_criteria>\n\n<output_format>\nDiagnosis. Strategy plan. New tests. Implementation diff. Benchmark before/after. Risk list.\n</output_format>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "code-stretch-05",
+    "domain": "code",
+    "prompt": "Stretch: insufficient context. Output asks for repro steps, environment, error logs before proceeding.",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  },
+  {
+    "id": "creative-ad-04",
+    "domain": "creative",
+    "prompt": "60 words max. Audience: 35-50, urban, eco-skeptical. Tone: dry humor. No 'sustainable journey'. Single concrete claim + brand + CTA.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "creative-character-03",
+    "domain": "creative",
+    "prompt": "Constraints: 30+, blue-collar background, ambivalent about tech. Voice anchor: Gibson early 80s. Forbidden: hacker tropes, neon, samurai swords.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "creative-naming-01",
+    "domain": "creative",
+    "prompt": "<role>Brand naming strategist for dev-tool products. Knows -ify/-ly/AI dates a product in 6 months.</role>\n\n<brief>\nProduct: Prompt optimization tool for developers. Senior engineers, AI engineers, tech leads.\nTone: Confident, technical, dry humor. Not corporate. Not cute. Not AI-first.\nLength: 1-3 syllables. Pronounceable in EN and ES.\n</brief>\n\n<constraints>\n- Length: 4-10 characters.\n- 1-3 syllables.\n- No -ify, -ly, -ai, -gpt, -prompt suffixes.\n- No portmanteau of \"prompt\" + anything.\n- Works as noun and verb.\n</constraints>\n\n<anti_cliche_blacklist>\nAI-aesthetic: spark, mind, brain, neural, smart, sage, oracle, nova, lumen.\nGeneric suffixes: -ify, -ly, -kit, -box, -hub, -lab, -studio.\nGreek/Roman gods. Intelligence animals. Refine/forge/craft synonyms.\n</anti_cliche_blacklist>\n\n<generation_protocol>\n1. Generate 12 candidates across 5 mechanisms (concrete object, verb from physics, reclaimed English word, bilingual EN/ES, brutally short non-word).\n2. Reject 4 most obvious. Document why.\n3. Develop top 4 with etymology, positioning, sample usage, risk.\n4. Self-critique: which would a competitor arrive at within 6 months? Cut those.\n</generation_protocol>\n\n<output_format>\nRecommended (1). Alternatives (2). Rejected with reasoning (4-6). Next steps (domain check, trademark, reaction test).\n</output_format>\n\n<forbidden_output>\n- Names with \"AI\", \"GPT\", \"prompt\", \"craft\", \"forge\", \"smart\".\n- Generic adjective stacks.\n- Names requiring etymology explanation.\n</forbidden_output>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "creative-stretch-05",
+    "domain": "creative",
+    "prompt": "Stretch: no brief. Ask for output type, audience, tone, constraints.",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  },
+  {
+    "id": "creative-tagline-02",
+    "domain": "creative",
+    "prompt": "Brief: audience devs, tone confident-dry. Constraints: < 8 words, no -ify. Anti-cliche: no 'supercharge', no 'unlock'. Generate 8, reject 4 obvious, develop 2.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "research-comparative-01",
+    "domain": "research",
+    "prompt": "<role>Senior research analyst writing for a CTO making a build/buy decision in 2 weeks.</role>\n\n<scope>\nQuestion: Should we adopt DSPy or LangChain (or neither) for our prompt-optimization pipeline?\nOur context: Next.js 15 + TypeScript, ~5K optimizations/month (expect 50K in 6 months), 4 engineers (1 ML), ≤ $500/month budget, p95 < 20s.\nRecency filter: prefer sources < 12 months. Flag older.\nOut of scope: code generation, RAG, vector DBs.\n</scope>\n\n<method>\n1. Hypothesis upfront (low confidence, revisable).\n2. Confirming search: official docs, papers, production case studies.\n3. Disconfirming search (mandatory): who migrated AWAY? Why?\n4. Need-to-believe: for each option, what would have to be true?\n5. Synthesize: agreements, conflicts, uncertainties.\n</method>\n\n<citation_format>\nEvery claim: [claim]. [Source: author, date, URL]. [Confidence: high|medium|low + reason].\nNo URL = no citation. No \"according to experts\" without naming them.\n</citation_format>\n\n<output_format>\n1. Executive summary (3 sentences + recommendation).\n2. Hypothesis evolution.\n3. Comparative table.\n4. Need-to-believe table.\n5. Disagreements in literature.\n6. Recommendation with 2 counterarguments addressed.\n7. Next concrete step (Monday action).\n8. Bibliography.\n</output_format>\n\n<forbidden>\n- Citing without URL.\n- \"Many experts believe\".\n- Both-options-are-valid fence-sitting.\n</forbidden>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "research-legal-04",
+    "domain": "research",
+    "prompt": "Scope: GDPR Art 5, 6, 17 as applied to prompt/response logs. Out of scope: HIPAA, CCPA. Each requirement cited to article + regulatory guidance.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "research-market-02",
+    "domain": "research",
+    "prompt": "Scope: B2B SaaS AI eval tools, 2024-2026. Method: top-down (Gartner) + bottom-up (named vendor revenues). Each number cited. Confidence levels per number.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "research-stretch-05",
+    "domain": "research",
+    "prompt": "Stretch: 'AI' is too broad. Ask for narrowed question, audience, decision context.",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  },
+  {
+    "id": "research-tech-03",
+    "domain": "research",
+    "prompt": "Scope: WasmEdge, Wasmtime, Spin. Criteria: cold start, memory, ecosystem, license. Disconfirming: who migrated AWAY from each?",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "writing-blog-01",
+    "domain": "writing",
+    "prompt": "<role>Technical writer for HN front page audiences. Knows what reads as authentic vs marketing.</role>\n\n<context>\nMigration: Go → Rust on settlement service, completed Q1 2026, 6-month project.\nMetrics: p99 340ms → 22ms; memory 4.2GB → 280MB; panics 14/year → 1/year.\nWhat went wrong: 3 weeks lost to lifetime-fighting; one senior engineer left over the curve.\n</context>\n\n<audience>\nSenior engineers/tech leads at 20-200 person companies, evaluating Rust skeptically. They've read \"Rust at $BIG_CO\" posts and want the unglamorous truth.\n</audience>\n\n<voice>\nFirst person plural. Technical, no hype. Vary sentences 8-25 words. Concrete situations not abstractions.\n</voice>\n\n<structure>\n1. Moment we knew Go wasn't going to work.\n2. What we tried first.\n3. Rust decision: who pushed, who resisted.\n4. Migration: 3 things better than expected, 2 worse.\n5. The numbers.\n6. What we'd do differently.\n7. Position, not summary.\n</structure>\n\n<length>1400-1700 words.</length>\n\n<forbidden_vocabulary>\ndelve, embark, journey, tapestry, vibrant, holistic, leverage, navigate, unlock, revolutionize.\n</forbidden_vocabulary>\n\n<self_check>\nRead first paragraph aloud. Find sentences with two abstract nouns side by side. Verify every metric is in context.\n</self_check>",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "writing-docs-03",
+    "domain": "writing",
+    "prompt": "Audience: integrating engineers. Structure: overview, auth, endpoints (method, path, params, response, errors), examples in curl + JS + Python.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "writing-email-02",
+    "domain": "writing",
+    "prompt": "Audience: CTO at 500-2000 person SaaS. Hook: reference their public talk. CTA: 20-min call this week. No hype. < 120 words.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "writing-launch-04",
+    "domain": "writing",
+    "prompt": "First paragraph: what it does in 1 sentence + demo link. Honest about what's not done. Why we built it (specific pain). Ask for feedback on X specific decision.",
+    "human_judgment": {
+      "clarity": true,
+      "specificity": true,
+      "completeness": true,
+      "groundedness": false,
+      "testability": true,
+      "robustness": true,
+      "cost_efficiency": true
+    }
+  },
+  {
+    "id": "writing-stretch-05",
+    "domain": "writing",
+    "prompt": "Stretch: too vague. Ask for audience, format, length, tone before proceeding.",
+    "human_judgment": {
+      "clarity": false,
+      "specificity": false,
+      "completeness": false,
+      "groundedness": false,
+      "testability": false,
+      "robustness": false,
+      "cost_efficiency": false
+    }
+  }
+]

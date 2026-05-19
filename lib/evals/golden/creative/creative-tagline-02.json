@@ -1,0 +1,25 @@
+{
+  "id": "creative-tagline-02",
+  "domain": "creative",
+  "input_vague": "tagline for a developer productivity tool",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<brief>",
+    "constraints",
+    "anti_cliche",
+    "generation_protocol"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "unleash",
+    "elevate"
+  ],
+  "output_optimal": "Brief: audience devs, tone confident-dry. Constraints: < 8 words, no -ify. Anti-cliche: no 'supercharge', no 'unlock'. Generate 8, reject 4 obvious, develop 2.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

@@ -1,0 +1,25 @@
+{
+  "id": "creative-ad-04",
+  "domain": "creative",
+  "input_vague": "30-sec radio ad script for sustainable shoes",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<brief>",
+    "audience",
+    "length_constraint",
+    "no_marketing_speak"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "empower",
+    "transform"
+  ],
+  "output_optimal": "60 words max. Audience: 35-50, urban, eco-skeptical. Tone: dry humor. No 'sustainable journey'. Single concrete claim + brand + CTA.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

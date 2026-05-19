@@ -1,0 +1,20 @@
+{
+  "id": "research-stretch-05",
+  "domain": "research",
+  "input_vague": "research AI",
+  "expected_score_min": 40,
+  "is_stretch": true,
+  "expected_traits": [
+    "asks_for_scope"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage"
+  ],
+  "output_optimal": "Stretch: 'AI' is too broad. Ask for narrowed question, audience, decision context.",
+  "why_excellent": "Stretch case: input under-specified. Optimal output refuses to proceed without clarification."
+}

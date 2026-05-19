@@ -1,0 +1,23 @@
+{
+  "id": "analytical-hire-03",
+  "domain": "analytical",
+  "input_vague": "first hire: senior eng vs PM",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<problem_framing>",
+    "option_space_includes_neither",
+    "sensitivity"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "clearly"
+  ],
+  "output_optimal": "Options: senior eng, PM, contractor, defer 3 months. Criteria: 18mo velocity, runway impact, founder time. Sensitivity: which assumption flips it?",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

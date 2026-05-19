@@ -1,0 +1,24 @@
+{
+  "id": "writing-launch-04",
+  "domain": "writing",
+  "input_vague": "Show HN post for new dev tool",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<audience>",
+    "concrete_demo",
+    "honest_status"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "revolutionary",
+    "disrupt"
+  ],
+  "output_optimal": "First paragraph: what it does in 1 sentence + demo link. Honest about what's not done. Why we built it (specific pain). Ask for feedback on X specific decision.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

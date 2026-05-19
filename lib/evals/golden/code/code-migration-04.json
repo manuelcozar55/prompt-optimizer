@@ -1,0 +1,24 @@
+{
+  "id": "code-migration-04",
+  "domain": "code",
+  "input_vague": "migrate Express app to Hono",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<migration_plan>",
+    "backward_compat",
+    "rollout_strategy"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "effortless",
+    "smooth"
+  ],
+  "output_optimal": "Phases: 1) feature parity audit, 2) route-by-route migration, 3) parity tests, 4) canary 5% traffic, 5) full cutover. Rollback plan: feature flag at edge.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "research-market-02",
+  "domain": "research",
+  "input_vague": "size the market for AI eval tools",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<scope>",
+    "method",
+    "citation_with_confidence",
+    "limitations"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "industry standard"
+  ],
+  "output_optimal": "Scope: B2B SaaS AI eval tools, 2024-2026. Method: top-down (Gartner) + bottom-up (named vendor revenues). Each number cited. Confidence levels per number.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

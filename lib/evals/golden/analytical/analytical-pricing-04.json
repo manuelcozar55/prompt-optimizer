@@ -1,0 +1,23 @@
+{
+  "id": "analytical-pricing-04",
+  "domain": "analytical",
+  "input_vague": "raise prices by 30% or not",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "assumptions_with_verification",
+    "sensitivity",
+    "next_step"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "potentially"
+  ],
+  "output_optimal": "Assumptions: churn elasticity, competitor response. Verify: 20-customer survey, competitor scrape. Sensitivity: at what churn does it stop being net positive? Next step: survey.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

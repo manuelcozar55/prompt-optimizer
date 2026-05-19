@@ -1,0 +1,25 @@
+{
+  "id": "writing-docs-03",
+  "domain": "writing",
+  "input_vague": "write API reference docs",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<audience>",
+    "structure",
+    "code_examples",
+    "error_table"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "comprehensive",
+    "easy"
+  ],
+  "output_optimal": "Audience: integrating engineers. Structure: overview, auth, endpoints (method, path, params, response, errors), examples in curl + JS + Python.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}

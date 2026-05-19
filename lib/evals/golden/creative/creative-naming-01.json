@@ -1,0 +1,16 @@
+{
+  "id": "creative-naming-01",
+  "domain": "creative",
+  "input_vague": "necesito nombre para nuestra nueva herramienta de optimización de prompts",
+  "expected_score_min": 85,
+  "expected_traits": [
+    "<brief>", "constraints", "anti_cliche_list", "generation_protocol",
+    "reject_obvious"
+  ],
+  "forbidden_terms": [
+    "delve", "transform", "unlock", "elevate", "revolutionize",
+    "magical", "powerful", "smart", "intelligent"
+  ],
+  "output_optimal": "<role>Brand naming strategist for dev-tool products. Knows -ify/-ly/AI dates a product in 6 months.</role>\n\n<brief>\nProduct: Prompt optimization tool for developers. Senior engineers, AI engineers, tech leads.\nTone: Confident, technical, dry humor. Not corporate. Not cute. Not AI-first.\nLength: 1-3 syllables. Pronounceable in EN and ES.\n</brief>\n\n<constraints>\n- Length: 4-10 characters.\n- 1-3 syllables.\n- No -ify, -ly, -ai, -gpt, -prompt suffixes.\n- No portmanteau of \"prompt\" + anything.\n- Works as noun and verb.\n</constraints>\n\n<anti_cliche_blacklist>\nAI-aesthetic: spark, mind, brain, neural, smart, sage, oracle, nova, lumen.\nGeneric suffixes: -ify, -ly, -kit, -box, -hub, -lab, -studio.\nGreek/Roman gods. Intelligence animals. Refine/forge/craft synonyms.\n</anti_cliche_blacklist>\n\n<generation_protocol>\n1. Generate 12 candidates across 5 mechanisms (concrete object, verb from physics, reclaimed English word, bilingual EN/ES, brutally short non-word).\n2. Reject 4 most obvious. Document why.\n3. Develop top 4 with etymology, positioning, sample usage, risk.\n4. Self-critique: which would a competitor arrive at within 6 months? Cut those.\n</generation_protocol>\n\n<output_format>\nRecommended (1). Alternatives (2). Rejected with reasoning (4-6). Next steps (domain check, trademark, reaction test).\n</output_format>\n\n<forbidden_output>\n- Names with \"AI\", \"GPT\", \"prompt\", \"craft\", \"forge\", \"smart\".\n- Generic adjective stacks.\n- Names requiring etymology explanation.\n</forbidden_output>",
+  "why_excellent": "Constraints duros. Anti-cliché por subdominio. Generation protocol con 5 mecanismos. Reject-obvious. Self-critique con criterio falsificable."
+}

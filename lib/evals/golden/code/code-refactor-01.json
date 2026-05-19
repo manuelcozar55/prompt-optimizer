@@ -1,0 +1,16 @@
+{
+  "id": "code-refactor-01",
+  "domain": "code",
+  "input_vague": "tengo un script python que es lento, ayuda a optimizarlo",
+  "expected_score_min": 85,
+  "expected_traits": [
+    "<context>", "<acceptance_criteria>", "tech_stack", "complexity_target",
+    "tests_first", "benchmark_method", "<thinking>"
+  ],
+  "forbidden_terms": [
+    "delve", "robust", "leverage", "could", "might", "tapestry",
+    "simply", "just", "easily", "straightforward"
+  ],
+  "output_optimal": "<role>Senior Python engineer specializing in data pipeline performance.</role>\n\n<context>\nProject: Python 3.11 ETL script processing CSV → Postgres.\nCurrent state: 50K rows / 8 minutes (104 rows/sec). Target: < 30 seconds.\nStack: pandas 2.x, psycopg3, no async currently.\nProfiling: cProfile output attached as `profile.txt`. Top hotspot: nested loop in `enrich_records()` doing per-row API lookup (lines 87-112).\n</context>\n\n<instructions>\nPropose and implement an optimization plan. Plan-before-code: list 3 candidate strategies. TDD-first: write failing tests then implement.\n</instructions>\n\n<acceptance_criteria>\n- All existing pytest tests still pass.\n- 50K-row benchmark < 30 seconds on M2 / 16GB.\n- No new heavy dependencies.\n- Diff < 200 lines net change.\n</acceptance_criteria>\n\n<output_format>\nDiagnosis. Strategy plan. New tests. Implementation diff. Benchmark before/after. Risk list.\n</output_format>",
+  "why_excellent": "Convierte input ambiguo en operacional. Tech stack explícito. Métricas concretas. TDD-first. Acceptance criteria medibles. Sin filler."
+}

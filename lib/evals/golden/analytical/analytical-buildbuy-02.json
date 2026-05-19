@@ -1,0 +1,24 @@
+{
+  "id": "analytical-buildbuy-02",
+  "domain": "analytical",
+  "input_vague": "build vs buy an LLM observability platform",
+  "expected_score_min": 85,
+  "is_stretch": false,
+  "expected_traits": [
+    "<problem_framing>",
+    "assumptions",
+    "criteria_weighted",
+    "red_team"
+  ],
+  "forbidden_terms": [
+    "delve",
+    "tapestry",
+    "robust",
+    "might",
+    "could",
+    "leverage",
+    "it depends"
+  ],
+  "output_optimal": "Decision: build, buy (Langfuse/Helicone), or hybrid. Decider: VP Eng. Criteria: 5 weighted. Assumptions: team capacity, vendor lock, compliance. Red team strongest case against.",
+  "why_excellent": "Production-quality prompt: explicit constraints, measurable criteria, anti-pattern guards."
+}
